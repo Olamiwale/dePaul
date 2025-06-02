@@ -14,14 +14,14 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v3
 
-    - name: Setup Node.jobs
+    - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18'
 
     - name: Install dependencies
       run: npm install
-      working-directory: /app
+      working-directory: ./depaul/app
 
     - name: Run test
       run: npm test
