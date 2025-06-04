@@ -28,7 +28,7 @@ jobs:
         
 
     - name: Install dependencies
-      working-directory: ./frontend/ap
+      working-directory: ./frontend/app
       run: npm ci
 
 
