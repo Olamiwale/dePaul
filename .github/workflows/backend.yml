@@ -28,5 +28,5 @@ jobs:
       
 
     - name: Run test
-      working-directory: ./backend
+      working-directory: ./backen
       run: npm test
