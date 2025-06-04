@@ -3,6 +3,8 @@ name: CICD Frontend pipeline
 
 on:
   push:
+    paths:
+      - 'frontend/app/**'
     branches: ["main"]
 
 jobs:
@@ -28,7 +30,7 @@ jobs:
     - name: Install dependencies
       working-directory: ./frontend/app
       run: npm ci
-      
+
 
     - name: Run Vite build
       working-directory: ./frontend/app
