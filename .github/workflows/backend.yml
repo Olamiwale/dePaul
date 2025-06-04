@@ -3,6 +3,8 @@ name: CICD Backend pipeline
 
 on:
   push:
+    paths:
+      - 'backend/**'
     branches: ["main"]
 
 jobs:
