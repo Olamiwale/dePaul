@@ -28,4 +28,5 @@ jobs:
       
 
     - name: Run test
+      working-directory: ./app
       run: npm test
