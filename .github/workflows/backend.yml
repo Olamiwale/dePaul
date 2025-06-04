@@ -1,5 +1,5 @@
 
-name: CICD Backend pipeline
+name: CI-CD Backend pipeline
 
 on:
   push:
@@ -12,12 +12,10 @@ jobs:
 
     runs-on: ubuntu-latest
     
-
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
       
-
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
