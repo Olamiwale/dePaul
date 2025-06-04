@@ -1,5 +1,5 @@
 
-name: CICD Frontend pipeline
+name: CI-CD Frontend pipeline
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
         
 
     - name: Install dependencies
-      working-directory: ./frontend/app
+      working-directory: ./frontend/ap
       run: npm ci
 
 
