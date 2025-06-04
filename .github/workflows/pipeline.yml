@@ -23,7 +23,7 @@ jobs:
         
 
     - name: Install dependencies
-      working-directory: /app
+      working-directory: ./app
       run: npm install
 
       
