@@ -9,19 +9,23 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    
 
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
+      
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18'
+        
 
     - name: Install dependencies
+      working-directory: /app
       run: npm install
-      working-directory: C:/Users/Ola/Desktop/depaul/app
 
+      
     - name: Run test
       run: npm test
