@@ -7,9 +7,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
@@ -19,7 +17,6 @@ jobs:
       with:
         node-version: '18'
         
-
     - name: Install dependencies
       working-directory: ./backend
       run: npm ci
@@ -29,25 +26,31 @@ jobs:
       working-directory: ./backend
       run: npm test
 
+
     - name: Azure login
       uses: azure/login@v1
       with:
-        creds: ${{secrets.GITHUB_TOKEN}}
+        creds: ${{secrets.AZURE_CREDENTIALS}}
     
+
     - name: Azure ACR login
       run: az acr login --name depaulacr
+
 
     - name: Build Docker image
       run: docker build -t depaulacr.azurecr.io/backend:v1 .
 
+
     - name: Push Docker image to ACR
       run: docker push depaulacr.azurecr.io/backend:v1
+
 
     - name: Set AKS context
       uses: azure/aks-set-context@v3
       with:
         resource-group: depaul
         cluster-name: depaulCluster
+
 
     - name: Deploy to AKS
       run: |

@@ -31,3 +31,13 @@ kubectl apply -f service.yaml
 kubectl get pods
 kubectl get services
 kubectl logs <pod-name> 
+
+
+
+
+## to get azure subscription
+az account show --query id --output tsv
+
+## Azure credentials
+
+az ad sp create-for-rbac --name "my-azure-pipeline-sp" --role contributor --scopes /subscriptions/8acdb728-9561-4071-afaa-cf8227e09d2f --sdk-auth

@@ -7,34 +7,53 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./frontend
     
-
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
       
-
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18'
         
-
     - name: Install dependencies
       working-directory: ./frontend/app
       run: npm ci
-
 
     - name: Run Vite build
       working-directory: ./frontend/app
       run: npm run build
       
-
     - name: Run test
       working-directory: ./frontend/app
       run: npm test
+
+    - name: Azure login
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.GITHUB_TOKEN}}
+    
+    - name: Azure ACR login
+      run: az acr login --name depaulacr
+
+    - name: Build Docker image
+      run: docker build -t depaulacr.azurecr.io/backend:v1 .
+
+    - name: Push Docker image to ACR
+      run: docker push depaulacr.azurecr.io/backend:v1
+
+    - name: Set AKS context
+      uses: azure/aks-set-context@v3
+      with:
+        resource-group: depaul
+        cluster-name: depaulCluster
+
+    - name: Deploy to AKS
+      run: |
+        kubectl apply -f k8s/deployment.yaml
+        kubectl apply -f k8s/service.yaml 
