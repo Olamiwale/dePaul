@@ -42,6 +42,7 @@ jobs:
       run: az acr login --name depaulacr
 
     - name: Build Docker image
+      working-directory: ./fronted/app
       run: docker build -t depaulacr.azurecr.io/frontend:v1 .
 
     - name: Push Docker image to ACR
@@ -55,5 +56,5 @@ jobs:
 
     - name: Deploy to AKS
       run: |
-        kubectl apply -f k8s/deployment.yaml
-        kubectl apply -f k8s/service.yaml 
+        kubectl apply -f ./frontend/app/k8s/frontend-deployment.yaml
+        kubectl apply -f ./frontend/app/k8s/frontend-service.yaml 
