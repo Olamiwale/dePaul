@@ -38,6 +38,7 @@ jobs:
 
 
     - name: Build Docker image
+      working-directory: ./backend
       run: docker build -t depaulacr.azurecr.io/backend:v1 .
 
 
