@@ -33,4 +33,4 @@ az account show --query id --output tsv
 
 ## Azure credentials
 
-az ad sp create-for-rbac --name "my-azure-pipeline-sp" --role contributor --scopes /subscriptions/8acdb728-9561-4071-afaa-cf8227e09d2f --sdk-auth
+az ad sp create-for-rbac --name "my-azure-pipeline-sp" --role contributor --scopes /subscriptions/########-####-####-####-############ --sdk-auth
