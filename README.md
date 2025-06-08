@@ -9,38 +9,38 @@ This project shows a full journey of deploying an Node.js application (backend a
 
 We begin by setting up the resource group, Azure Container Registry (ACR), and AKS cluster:
 
-# Create a Resource Group
+Create a Resource Group
 
 ```bash
 az group create --name my-resource-group --location eastus
 
 ```
 
-# Create Azure Container Registry
+Create Azure Container Registry
 
 ```bash
 az acr create --resource-group my-resource-group --name my-acr --sku Basic
 ```
 
-# Login to ACR
+Login to ACR
 
 ```bash
 az acr login --name my-acr
 ```
 
-# Create AKS Cluster
+Create AKS Cluster
 
 ```bash
 az aks create --resource-group my-resource-group --name my-cluster --node-count 2 --node-vm-size Standard_A2_v2 --enable-addons monitoring --generate-ssh-keys --attach-acr my-acr
 ```
 
-# Connect kubectl to AKS
+Connect kubectl to AKS
 
 ```bash
 az aks get-credentials --resource-group my-resource-group --name briitzcluster
 ```
 
-# Confirm node status
+Confirm node status
 ```bash
 kubectl get nodes
 
@@ -50,8 +50,8 @@ kubectl get nodes
 
 Check the Github repository for the full build-up of the CI/CD automation for both backend and frontend
 
-# Confirming node, pods, deployment and service status
+Confirming node, pods, deployment and service status
 ![Backend Architecture](./image/image1.png)
 
-# accessing external port from the azure portal
+Accessing external port from the azure portal
 ![Backend Architecture](./image/image2.png)
