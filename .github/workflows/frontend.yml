@@ -65,4 +65,5 @@ jobs:
     - name: Deploy to AKS
       run: |
         kubectl apply -f ./frontend/app/k8s/frontend-deployment.yaml
-        kubectl apply -f ./frontend/app/k8s/frontend-service.yaml 
+        kubectl apply -f ./frontend/app/k8s/frontend-service.yaml
+        kubectl apply -f ./frontend/k8s/hpa-frontend.yaml 
