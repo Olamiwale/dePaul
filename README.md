@@ -1,56 +1,38 @@
-## Microservice with different workflows
 
-This is a microservice service app with multiple github action workflow. In this application each section of the app has it own workflow file
+# CI/CD Deployment of a Node.js App on Azure Kubernetes Service (AKS)
 
+This project shows a full journey of deploying an Node.js application (backend and frontend) on azure kubernetes service (AKS) with CI/CD automation using GitHub Actions. 
 
-# Steps
+## Steps
 
-## Setting up cloud
-az group create --name briitz --location eastus
-az acr create --resource-group briitz --name briitzacr --sku Basic
+## 🧱 1. Setting up Azure Infrastructure
 
+We begin by setting up the resource group, Azure Container Registry (ACR), and AKS cluster:
 
-## Deploy to AKS
-az aks create --resource-group briitz --name briitzCluster --node-count 2 --node-vm-size Standard_A2_v2 --enable-addons monitoring --generate-ssh-keys --attach-acr briitzacr
+```bash
+# Create a Resource Group
+az group create --name my-resource-roup --location eastus
 
+# Create Azure Container Registry
+az acr create --resource-group my-resource-group --name my-acr --sku Basic
 
-## Connect to AKS
-  
-## connect to aks
+# Login to ACR
+az acr login --name my-acr
 
-az aks get-credentials --resource-group briitz --name briitzCluster
+# Create AKS Cluster
+az aks create --resource-group my-resource-group --name my-cluster --node-count 2 --node-vm-size Standard_A2_v2 --enable-addons monitoring --generate-ssh-keys --attach-acr my-acr
 
+# Connect kubectl to AKS
+az aks get-credentials --resource-group my-resource-group --name briitzcluster
 
-# Verify Access
-kubectl get pods
-kubectl get services
-kubectl logs <pod-name> 
-
-
+# Confirm node status
 kubectl get nodes
 
-## to get azure subscription
-az account show --query id --output tsv
+```
 
-## Azure credentials
+## 🔁 2. Automating with GitHub Actions (CI/CD)
 
-az ad sp create-for-rbac --name "my-azure-pipeline-sp" --role contributor --scopes /subscriptions/########-####-####-####-############ --sdk-auth
+Check the Github repository for the full build-up of the CI/CD automation for both backend and frontend
 
-
-## commands
-
-
-az aks list --query "[].{Name:name, ResourceGroup:RgN}" --output table
-
-kubectl config delete-context depaulCluster
-
-az group delete --name depaul --yes --no-wait
-
-az acr repository delete --name depaulacr --repository backend --yes
-az acr repository update --name depaulacr --repository backend --set retentionPolicy.days=30
-
-
-
-
-
-
+![Backend Architecture](./image/image1.png)
+![Backend Architecture](./image/image2.png)
