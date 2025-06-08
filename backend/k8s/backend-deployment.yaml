@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: depaulacr.azurecr.io/backend:v1
+        image: briitzacr.azurecr.io/backend:v1
         ports:
         - containerPort: 3000
        

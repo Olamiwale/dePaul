@@ -36,23 +36,23 @@ jobs:
     
 
     - name: Azure ACR login
-      run: az acr login --name depaulacr
+      run: az acr login --name briitzacr
 
 
     - name: Build Docker image
       working-directory: ./backend
-      run: docker build -t depaulacr.azurecr.io/backend:v1 .
+      run: docker build -t briitzacr.azurecr.io/backend:v1 .
 
 
     - name: Push Docker image to ACR
-      run: docker push depaulacr.azurecr.io/backend:v1
+      run: docker push briitzacr.azurecr.io/backend:v1
 
 
     - name: Set AKS context
       uses: azure/aks-set-context@v3
       with:
-        resource-group: depaul
-        cluster-name: depaulCluster
+        resource-group: briitz
+        cluster-name: briitzCluster
 
 
     - name: Deploy to AKS
